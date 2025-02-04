@@ -1,0 +1,28 @@
+{
+  "name": "cnote-backend",
+  "version": "1.0.0",
+  "description": "The backend for the amazing cnote application",
+  "main": "index.js",
+  "repository": "https://github.com/Rabee96/CNotes-backend.git",
+  "author": "Rabee AlBhaisi",
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.7.5",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "json-web-token": "^3.2.0",
+    "mongoose": "^8.9.6",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.5",
+    "@types/express": "^5.0.0",
+    "@types/helmet": "^4.0.0",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/mongoose": "^5.11.97",
+    "@types/yup": "^0.32.0"
+  }
+}
