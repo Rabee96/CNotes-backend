@@ -1,22 +1,17 @@
-import express from "express";
-import helmet from "helmet";
-import compression from "compression";
-import cors from "cors";
+import http from "http";
+import app from "./app";
+import environment from "./config/environment";
+import dbConnection from "./db";
 
-const app = express();
-const PORT = 4000;
+const port = environment.port;
 
-// Middleware
-app.use(helmet());
-app.use(compression());
-app.use(cors());
+const server = http.createServer(app);
 
-// Routes
-app.get("/", (req, res) => {
-  res.send("Hello, world!");
+dbConnection.once("open", () => {
+  console.log("connected to database");
+  server.listen(port, () => console.log(`Server is running on prot: ${port}`));
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+dbConnection.on("error", (err) => {
+  console.error(`connection error: ${err}`);
 });
