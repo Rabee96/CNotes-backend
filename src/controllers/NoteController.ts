@@ -11,8 +11,8 @@ class NoteController {
     next: NextFunction
   ) => {
     try {
-      const { title, note, status } = req.body;
-      const isCreated = await Note.create({ title, note, status });
+      const { title, note } = req.body;
+      const isCreated = await Note.create({ title, note });
       if (!isCreated)
         next(
           new GenericError("Something went wrong while creating the note", 500)
@@ -54,6 +54,13 @@ class NoteController {
   updateNote = async (req: NoteRequest, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
+      if (!isValidId(id))
+        next(
+          new GenericError(
+            "The ID is incorrect please make sure to use the correct ID",
+            404
+          )
+        );
       const { title, note, status } = req.body;
       const updatedNote = await Note.findByIdAndUpdate(id, {
         title,
@@ -72,6 +79,13 @@ class NoteController {
   deleteNote = async (req: NoteRequest, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
+      if (!isValidId(id))
+        next(
+          new GenericError(
+            "The ID is incorrect please make sure to use the correct ID",
+            404
+          )
+        );
       const isDeleted = await Note.findByIdAndDelete(id);
       if (!isDeleted)
         next(
