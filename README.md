@@ -146,7 +146,7 @@ Here are the available endpoints in the Notes API:
 Create a `.env` file in the root directory to store your environment variables:
 
 ```env
-MONGO_URI=mongodb://localhost:27017/notesdb
+MONGO_URI=mongodb://localhost:27017/CNoteDB
 PORT=4000
 ```
 
